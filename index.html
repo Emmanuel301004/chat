@@ -3,23 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat Assistant - Professional Interface</title>
+    <title>AI Chat Interface</title>
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-            --secondary-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            --accent-color: #6366f1;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --background-primary: #ffffff;
-            --background-secondary: #f8fafc;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -27,179 +12,57 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
             display: flex;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .app-container {
-            display: flex;
-            width: 100%;
-            max-width: 1500px;
-            margin: 0 auto;
-            gap: 20px;
-            height: calc(100vh - 40px);
-        }
-
-        .sidebar {
-            width: 320px;
-            background: var(--background-primary);
-            border-radius: 16px;
-            box-shadow: var(--shadow-xl);
-            margin-left: -6%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .sidebar-header {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 24px 20px;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .history-section {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .history-item {
-            padding: 12px 16px;
-            margin-bottom: 8px;
-            background: var(--background-secondary);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .history-item:hover {
-            background: #f1f5f9;
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .history-item.active {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        .history-item-preview {
-            font-size: 0.875rem;
-            color: var(--text-primary);
-            font-weight: 500;
-            margin-bottom: 4px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .history-item.active .history-item-preview {
-            color: white;
-        }
-
-        .history-item-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
-
-        .history-item.active .history-item-time {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .clear-history-btn {
-            margin: 16px 20px;
-            padding: 10px 16px;
-            background: transparent;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .clear-history-btn:hover {
-            border-color: #ef4444;
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.05);
         }
 
         .chat-container {
-            flex: 1;
-            background: var(--background-primary);
-            border-radius: 16px;
-            box-shadow: var(--shadow-xl);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .chat-header {
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             color: white;
-            padding: 24px 32px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 600;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-
-        .chat-header-title {
-            display: flex;
             align-items: center;
-            gap: 12px;
         }
 
-        .chat-header h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .status-indicator {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .token-counter {
+            font-size: 0.8em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 32px;
+            padding: 20px;
             overflow-y: auto;
-            background: var(--background-secondary);
-            scroll-behavior: smooth;
+            background: #f8f9fa;
         }
 
         .message {
-            margin-bottom: 24px;
+            margin-bottom: 15px;
             display: flex;
-            animation: slideIn 0.4s ease-out;
+            animation: fadeIn 0.3s ease-in;
         }
 
         .message.user {
@@ -210,108 +73,82 @@
             justify-content: flex-start;
         }
 
-        .message-wrapper {
-            max-width: 75%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
         .message-content {
-            padding: 16px 20px;
+            max-width: 70%;
+            padding: 12px 18px;
             border-radius: 18px;
             word-wrap: break-word;
-            line-height: 1.5;
+            line-height: 1.4;
             white-space: pre-wrap;
-            font-size: 0.95rem;
-            position: relative;
         }
 
         .message.user .message-content {
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-bottom-right-radius: 4px;
-            box-shadow: var(--shadow-md);
         }
 
         .message.ai .message-content {
-            background: var(--background-primary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: white;
+            color: #333;
+            border: 1px solid #e1e5e9;
             border-bottom-left-radius: 4px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .message-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .message.user .message-time {
-            text-align: right;
-        }
-
-        .message.ai .message-time {
-            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .chat-input-container {
-            padding: 24px 32px;
-            background: var(--background-primary);
-            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e1e5e9;
             display: flex;
-            gap: 16px;
-            align-items: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .input-wrapper {
-            flex: 1;
-            position: relative;
+        .input-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .chat-input {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            font-size: 0.95rem;
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            font-size: 16px;
             outline: none;
-            transition: all 0.3s ease;
-            background: var(--background-secondary);
-            resize: none;
-            min-height: 54px;
-            max-height: 120px;
-            font-family: inherit;
-            line-height: 1.5;
+            transition: border-color 0.3s ease;
         }
 
         .chat-input:focus {
-            border-color: var(--accent-color);
-            background: var(--background-primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: #667eea;
         }
 
         .send-button {
-            padding: 16px 24px;
-            background: var(--primary-gradient);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 16px;
             font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: var(--shadow-md);
-            min-width: 100px;
-            height: 54px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .send-button:hover:not(:disabled) {
+        .send-button:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
         .send-button:disabled {
@@ -320,227 +157,144 @@
             transform: none;
         }
 
-        .loading-message {
+        .control-button {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #e1e5e9;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .control-button:hover {
+            background: #e9ecef;
+        }
+
+        .token-info {
+            font-size: 12px;
+            color: #666;
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: var(--text-secondary);
+            gap: 10px;
+        }
+
+        .token-warning {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
             font-style: italic;
-            padding: 16px 20px;
-            background: var(--background-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            border-bottom-left-radius: 4px;
-            box-shadow: var(--shadow-md);
         }
 
         .loading-dots {
-            display: flex;
-            gap: 4px;
+            display: inline-flex;
+            gap: 2px;
         }
 
         .loading-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-color);
+            width: 4px;
+            height: 4px;
+            background: #666;
             border-radius: 50%;
             animation: bounce 1.4s ease-in-out infinite both;
         }
 
         .loading-dot:nth-child(1) { animation-delay: -0.32s; }
         .loading-dot:nth-child(2) { animation-delay: -0.16s; }
-        .loading-dot:nth-child(3) { animation-delay: 0s; }
 
-        .error-message {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-            color: #dc2626;
-            padding: 16px 20px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            border-left: 4px solid #dc2626;
-            box-shadow: var(--shadow-md);
-            font-weight: 500;
-        }
-
-        .welcome-message {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        .welcome-icon {
-            font-size: 4rem;
-            margin-bottom: 24px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .welcome-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .welcome-subtitle {
-            font-size: 1rem;
-            opacity: 0.8;
-            max-width: 400px;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounce {
-            0%, 80%, 100% {
-                transform: scale(0);
-            }
-            40% {
-                transform: scale(1);
-            }
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
         }
 
-        @media (max-width: 1024px) {
-            .app-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                height: 200px;
-            }
-            
-            .history-section {
-                padding: 16px;
-            }
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #c33;
+        }
+
+        .info-message {
+            background: #e8f4fd;
+            color: #0066cc;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0066cc;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .chat-container {
+                width: 95%;
+                height: 90vh;
             }
             
+            .message-content {
+                max-width: 85%;
+            }
+
             .chat-header {
-                padding: 16px 20px;
+                flex-direction: column;
+                gap: 10px;
             }
-            
-            .chat-messages {
-                padding: 20px;
+
+            .controls-row {
+                flex-direction: column;
+                gap: 10px;
             }
-            
-            .chat-input-container {
-                padding: 16px 20px;
-            }
-            
-            .message-wrapper {
-                max-width: 90%;
-            }
-        }
-
-        .history-search {
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .history-search input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.875rem;
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        .history-search input:focus {
-            border-color: var(--accent-color);
-        }
-
-        .no-history {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            padding: 40px 20px;
-            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar with History -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <span style="font-size: 1.5rem;">📚</span>
-                <h2>Chat History</h2>
+    <div class="chat-container">
+        <div class="chat-header">
+            <span>🤖 AI Chat Assistant</span>
+            <div class="token-counter" id="tokenCounter">
+                Tokens: 0/8000
             </div>
-            
-            <div class="history-search">
-                <input type="text" placeholder="Search history..." id="historySearch" oninput="filterHistory()">
-            </div>
-            
-            <div class="history-section" id="historySection">
-                <div class="no-history">
-                    No chat history yet. Start a conversation to see your history here.
-                </div>
-            </div>
-            
-            <button class="clear-history-btn" onclick="clearHistory()">
-                🗑️ Clear History
-            </button>
         </div>
-
-        <!-- Main Chat Interface -->
-        <div class="chat-container">
-            <div class="chat-header">
-                <div class="chat-header-title">
-                    <span style="font-size: 2rem;">🤖</span>
-                    <div>
-                        <h1>AI Assistant</h1>
-                        <small style="opacity: 0.8;">Powered by Advanced AI</small>
-                    </div>
-                </div>
-                <div class="status-indicator" title="Online"></div>
-            </div>
-            
-            <div class="chat-messages" id="chatMessages">
-                <div class="welcome-message">
-                    <div class="welcome-icon">🚀</div>
-                    <h2 class="welcome-title">Welcome to AI Assistant</h2>
-                    <p class="welcome-subtitle">
-                        I'm here to help you with questions, creative tasks, problem-solving, and more. 
-                        Start by typing a message below!
-                    </p>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message ai">
+                <div class="message-content">
+                    Hello! I'm your AI assistant. How can I help you today?
                 </div>
             </div>
-            
-            <div class="chat-input-container">
-                <div class="input-wrapper">
-                    <textarea 
-                        class="chat-input" 
-                        id="chatInput" 
-                        placeholder="Type your message here... (Press Shift+Enter for new line)"
-                        rows="1"
-                        onkeydown="handleKeyPress(event)"
-                        oninput="autoResize(this)"
-                    ></textarea>
-                </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="input-row">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Type your message here..."
+                    onkeypress="handleKeyPress(event)"
+                >
                 <button class="send-button" id="sendButton" onclick="sendMessage()">
                     Send
                 </button>
+            </div>
+            <div class="controls-row">
+                <div class="token-info" id="tokenInfo">
+                    <span>Context: <span id="contextLength">0</span> messages</span>
+                    <button class="control-button" onclick="clearHistory()">Clear History</button>
+                    <button class="control-button" onclick="trimHistory()">Trim Old Messages</button>
+                </div>
             </div>
         </div>
     </div>
@@ -549,70 +303,109 @@
         // Configuration
         const API_CONFIG = {
             baseUrl: "https://openrouter.ai/api/v1",
-            apiKey: "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",
-            model: "microsoft/phi-4-reasoning-plus:free"
+            apiKey: "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",
+            model: "microsoft/phi-4-reasoning-plus:free",
+            maxTokens: 8000, // Conservative limit
+            maxContextMessages: 10 // Maximum number of message pairs to keep
         };
 
-        // In-memory storage (replace with localStorage in your environment)
-        let chatHistory = [];
-        let currentConversation = [];
-        let currentHistoryId = null;
+        // Conversation history and token tracking
+        let conversationHistory = [];
+        let estimatedTokens = 0;
 
         // DOM elements
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const sendButton = document.getElementById('sendButton');
-        const historySection = document.getElementById('historySection');
-        const historySearch = document.getElementById('historySearch');
+        const tokenCounter = document.getElementById('tokenCounter');
+        const tokenInfo = document.getElementById('tokenInfo');
+        const contextLength = document.getElementById('contextLength');
 
-        // Initialize app
-        function initializeApp() {
-            loadHistory();
-            chatInput.focus();
+        // Rough token estimation (approximately 4 characters = 1 token)
+        function estimateTokens(text) {
+            return Math.ceil(text.length / 4);
         }
 
-        // Auto-resize textarea
-        function autoResize(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        // Calculate total tokens in conversation history
+        function calculateTotalTokens() {
+            return conversationHistory.reduce((total, message) => {
+                return total + estimateTokens(message.content);
+            }, 0);
+        }
+
+        // Update token counter display
+        function updateTokenCounter() {
+            estimatedTokens = calculateTotalTokens();
+            tokenCounter.textContent = `Tokens: ${estimatedTokens}/${API_CONFIG.maxTokens}`;
+            contextLength.textContent = Math.floor(conversationHistory.length / 2);
+            
+            if (estimatedTokens > API_CONFIG.maxTokens * 0.8) {
+                tokenCounter.classList.add('token-warning');
+            } else {
+                tokenCounter.classList.remove('token-warning');
+            }
+        }
+
+        // Trim conversation history to stay within token limits
+        function trimHistory() {
+            // Keep only the most recent messages
+            const maxMessages = API_CONFIG.maxContextMessages * 2; // user + assistant pairs
+            if (conversationHistory.length > maxMessages) {
+                conversationHistory = conversationHistory.slice(-maxMessages);
+                addInfoMessage(`Trimmed conversation history to last ${API_CONFIG.maxContextMessages} exchanges to manage token usage.`);
+            }
+            
+            // If still too many tokens, be more aggressive
+            while (calculateTotalTokens() > API_CONFIG.maxTokens * 0.7 && conversationHistory.length > 2) {
+                conversationHistory.splice(0, 2); // Remove oldest user-assistant pair
+            }
+            
+            updateTokenCounter();
+        }
+
+        // Clear conversation history
+        function clearHistory() {
+            conversationHistory = [];
+            updateTokenCounter();
+            addInfoMessage("Conversation history cleared. Starting fresh!");
+        }
+
+        // Auto-trim if approaching token limit
+        function autoTrimIfNeeded() {
+            const currentTokens = calculateTotalTokens();
+            const inputTokens = estimateTokens(chatInput.value);
+            const totalEstimated = currentTokens + inputTokens + 500; // Buffer for response
+            
+            if (totalEstimated > API_CONFIG.maxTokens * 0.8) {
+                trimHistory();
+                return true;
+            }
+            return false;
         }
 
         // Add message to chat
         function addMessage(content, isUser = false) {
-            // Remove welcome message if it exists
-            const welcomeMessage = document.querySelector('.welcome-message');
-            if (welcomeMessage) {
-                welcomeMessage.remove();
-            }
-
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
-            
-            const messageWrapper = document.createElement('div');
-            messageWrapper.className = 'message-wrapper';
             
             const messageContent = document.createElement('div');
             messageContent.className = 'message-content';
             messageContent.textContent = content;
             
-            const messageTime = document.createElement('div');
-            messageTime.className = 'message-time';
-            messageTime.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            messageWrapper.appendChild(messageContent);
-            messageWrapper.appendChild(messageTime);
-            messageDiv.appendChild(messageWrapper);
+            messageDiv.appendChild(messageContent);
             chatMessages.appendChild(messageDiv);
             
             // Scroll to bottom
             chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
 
-            // Add to current conversation
-            currentConversation.push({
-                role: isUser ? "user" : "assistant",
-                content: content,
-                timestamp: new Date().toISOString()
-            });
+        // Add info message
+        function addInfoMessage(content) {
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'info-message';
+            infoDiv.textContent = content;
+            chatMessages.appendChild(infoDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         // Add loading indicator
@@ -621,13 +414,10 @@
             messageDiv.className = 'message ai';
             messageDiv.id = 'loadingMessage';
             
-            const messageWrapper = document.createElement('div');
-            messageWrapper.className = 'message-wrapper';
-            
-            const loadingContent = document.createElement('div');
-            loadingContent.className = 'loading-message';
-            loadingContent.innerHTML = `
-                <span>AI is thinking</span>
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content loading';
+            messageContent.innerHTML = `
+                AI is thinking
                 <div class="loading-dots">
                     <div class="loading-dot"></div>
                     <div class="loading-dot"></div>
@@ -635,8 +425,7 @@
                 </div>
             `;
             
-            messageWrapper.appendChild(loadingContent);
-            messageDiv.appendChild(messageWrapper);
+            messageDiv.appendChild(messageContent);
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
             
@@ -655,20 +444,30 @@
         function addErrorMessage(error) {
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error-message';
-            errorDiv.innerHTML = `<strong>Error:</strong> ${error}`;
+            errorDiv.textContent = `Error: ${error}`;
             chatMessages.appendChild(errorDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Call OpenRouter API
+        // Call OpenRouter API with better token management
         async function callAI(prompt) {
             try {
-                const messages = currentConversation
-                    .filter(msg => msg.role === "user" || msg.role === "assistant")
-                    .map(msg => ({
-                        role: msg.role,
-                        content: msg.content
-                    }));
+                // Auto-trim if needed before adding new message
+                const wasTrimmed = autoTrimIfNeeded();
+                
+                // Add user message to conversation history
+                conversationHistory.push({
+                    role: "user",
+                    content: prompt
+                });
+
+                // Calculate dynamic max_tokens for response
+                const usedTokens = calculateTotalTokens();
+                const maxResponseTokens = Math.min(1500, API_CONFIG.maxTokens - usedTokens - 200); // Buffer
+
+                if (maxResponseTokens < 100) {
+                    throw new Error("Context is too long. Please clear or trim the conversation history.");
+                }
 
                 const response = await fetch(`${API_CONFIG.baseUrl}/chat/completions`, {
                     method: "POST",
@@ -680,8 +479,8 @@
                     },
                     body: JSON.stringify({
                         model: API_CONFIG.model,
-                        messages: messages,
-                
+                        messages: conversationHistory,
+                        max_tokens: maxResponseTokens,
                         temperature: 0.7,
                         stream: false
                     })
@@ -699,7 +498,17 @@
                 }
 
                 const data = await response.json();
-                return data.choices[0].message.content;
+                const aiResponse = data.choices[0].message.content;
+                
+                // Add AI response to conversation history
+                conversationHistory.push({
+                    role: "assistant",
+                    content: aiResponse
+                });
+
+                updateTokenCounter();
+
+                return aiResponse;
             } catch (error) {
                 console.error('API Error:', error);
                 throw error;
@@ -712,12 +521,17 @@
             
             if (!prompt) return;
 
+            // Check if prompt alone is too long
+            if (estimateTokens(prompt) > 2000) {
+                addErrorMessage("Your message is too long. Please make it shorter.");
+                return;
+            }
+
             // Add user message to UI
             addMessage(prompt, true);
             
             // Clear input and disable button
             chatInput.value = '';
-            chatInput.style.height = 'auto';
             sendButton.disabled = true;
             sendButton.textContent = 'Sending...';
             
@@ -732,14 +546,16 @@
                 removeLoadingMessage();
                 addMessage(aiResponse);
                 
-                // Save to history
-                saveCurrentConversation();
-                
             } catch (error) {
                 // Remove loading and show error
                 removeLoadingMessage();
                 addErrorMessage(error.message);
                 console.error('Error:', error);
+                
+                // If it was a token error, suggest clearing history
+                if (error.message.includes('token') || error.message.includes('context')) {
+                    addInfoMessage("💡 Tip: Try clearing or trimming the conversation history to reduce token usage.");
+                }
             } finally {
                 // Re-enable button
                 sendButton.disabled = false;
@@ -756,151 +572,11 @@
             }
         }
 
-        // Save current conversation to history
-        function saveCurrentConversation() {
-            if (currentConversation.length === 0) return;
-
-            const firstUserMessage = currentConversation.find(msg => msg.role === "user");
-            if (!firstUserMessage) return;
-
-            const historyItem = {
-                id: currentHistoryId || Date.now().toString(),
-                title: firstUserMessage.content.substring(0, 50) + (firstUserMessage.content.length > 50 ? '...' : ''),
-                messages: [...currentConversation],
-                lastUpdated: new Date().toISOString()
-            };
-
-            // Update existing or add new
-            const existingIndex = chatHistory.findIndex(item => item.id === historyItem.id);
-            if (existingIndex >= 0) {
-                chatHistory[existingIndex] = historyItem;
-            } else {
-                chatHistory.unshift(historyItem);
-                currentHistoryId = historyItem.id;
-            }
-
-            // Keep only last 50 conversations
-            if (chatHistory.length > 50) {
-                chatHistory = chatHistory.slice(0, 50);
-            }
-
-            updateHistoryUI();
-        }
-
-        // Load history from storage
-        function loadHistory() {
-            // In a real environment, you would load from localStorage here
-            // chatHistory = JSON.parse(localStorage.getItem('chatHistory') || '[]');
-            updateHistoryUI();
-        }
-
-        // Update history UI
-        function updateHistoryUI() {
-            const filteredHistory = filterHistoryBySearch();
-            
-            if (filteredHistory.length === 0) {
-                historySection.innerHTML = '<div class="no-history">No chat history found.</div>';
-                return;
-            }
-
-            historySection.innerHTML = filteredHistory.map(item => `
-                <div class="history-item ${item.id === currentHistoryId ? 'active' : ''}" 
-                     onclick="loadConversation('${item.id}')">
-                    <div class="history-item-preview">${item.title}</div>
-                    <div class="history-item-time">${new Date(item.lastUpdated).toLocaleDateString()}</div>
-                </div>
-            `).join('');
-        }
-
-        // Filter history by search
-        function filterHistoryBySearch() {
-            const searchTerm = historySearch.value.toLowerCase();
-            if (!searchTerm) return chatHistory;
-            
-            return chatHistory.filter(item => 
-                item.title.toLowerCase().includes(searchTerm) ||
-                item.messages.some(msg => msg.content.toLowerCase().includes(searchTerm))
-            );
-        }
-
-        // Filter history (called by search input)
-        function filterHistory() {
-            updateHistoryUI();
-        }
-
-        // Load a conversation from history
-        function loadConversation(historyId) {
-            const historyItem = chatHistory.find(item => item.id === historyId);
-            if (!historyItem) return;
-
-            currentHistoryId = historyId;
-            currentConversation = [...historyItem.messages];
-
-            // Clear current chat
-            chatMessages.innerHTML = '';
-
-            // Rebuild chat from history
-            historyItem.messages.forEach(msg => {
-                if (msg.role === "user" || msg.role === "assistant") {
-                    addMessageFromHistory(msg.content, msg.role === "user", msg.timestamp);
-                }
-            });
-
-            updateHistoryUI();
-        }
-
-        // Add message from history (without adding to currentConversation again)
-        function addMessageFromHistory(content, isUser, timestamp) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
-            
-            const messageWrapper = document.createElement('div');
-            messageWrapper.className = 'message-wrapper';
-            
-            const messageContent = document.createElement('div');
-            messageContent.className = 'message-content';
-            messageContent.textContent = content;
-            
-            const messageTime = document.createElement('div');
-            messageTime.className = 'message-time';
-            messageTime.textContent = new Date(timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            messageWrapper.appendChild(messageContent);
-            messageWrapper.appendChild(messageTime);
-            messageDiv.appendChild(messageWrapper);
-            chatMessages.appendChild(messageDiv);
-            
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Start new conversation
-        function startNewConversation() {
-            currentConversation = [];
-            currentHistoryId = null;
-            chatMessages.innerHTML = `
-                <div class="welcome-message">
-                    <div class="welcome-icon">🚀</div>
-                    <h2 class="welcome-title">Welcome to AI Assistant</h2>
-                    <p class="welcome-subtitle">
-                        I'm here to help you with questions, creative tasks, problem-solving, and more. 
-                        Start by typing a message below!
-                    </p>
-                </div>
-            `;
-            updateHistoryUI();
-        }
-
-        // Clear all history
-        function clearHistory() {
-            if (confirm('Are you sure you want to clear all chat history? This action cannot be undone.')) {
-                chatHistory = [];
-                // In a real environment: localStorage.removeItem('chatHistory');
-                startNewConversation();
-            }
-        }
-
-        // Initialize app when page loads
-        window.addEventListener('load', initializeApp);
+        // Initialize
+        window.addEventListener('load', () => {
+            chatInput.focus();
+            updateTokenCounter();
+        });
     </script>
 </body>
 </html>
